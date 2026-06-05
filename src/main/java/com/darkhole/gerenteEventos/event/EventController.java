@@ -3,10 +3,10 @@ package com.darkhole.gerenteEventos.event;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.darkhole.gerenteEventos.data.ResultConstDTO;
-import com.darkhole.gerenteEventos.data.ResultDTO;
-import com.darkhole.gerenteEventos.data.TokenDTO;
 import com.darkhole.gerenteEventos.event.data.EventListDTO;
+import com.darkhole.gerenteEventos.shared.dto.ResultConstDTO;
+import com.darkhole.gerenteEventos.shared.dto.ResultDTO;
+import com.darkhole.gerenteEventos.shared.dto.TokenDTO;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

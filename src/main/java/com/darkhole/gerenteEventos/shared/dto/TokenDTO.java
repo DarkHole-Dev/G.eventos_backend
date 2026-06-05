@@ -1,4 +1,4 @@
-package com.darkhole.gerenteEventos.data;
+package com.darkhole.gerenteEventos.shared.dto;
 
 public class TokenDTO extends ResultConstDTO {
     public String token;
