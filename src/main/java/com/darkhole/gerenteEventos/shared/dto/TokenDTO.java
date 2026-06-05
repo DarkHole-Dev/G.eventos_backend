@@ -1,9 +1,10 @@
 package com.darkhole.gerenteEventos.shared.dto;
 
-public class TokenDTO extends ResultConstDTO {
-    public String token;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-    public TokenDTO(String token) {
-        this.token = token;
-    }
+@AllArgsConstructor
+@NoArgsConstructor
+public class TokenDTO extends ResultDTO {
+    public String token;
 }
