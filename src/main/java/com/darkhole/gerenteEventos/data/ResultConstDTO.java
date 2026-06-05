@@ -1,4 +1,4 @@
-package com.darkhole.gerenteEventos.data.core;
+package com.darkhole.gerenteEventos.data;
 
 import org.springframework.http.ResponseEntity;
 
