@@ -9,7 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.darkhole.gerenteEventos.shared.database.entity.VerificationEntity;
 import com.darkhole.gerenteEventos.shared.database.repository.VerificationRepository;
 import com.darkhole.gerenteEventos.shared.dto.request.VerificationUpdateRequestDTO;
-import com.darkhole.gerenteEventos.shared.dto.response.VerificationResponseDTO;
+import com.darkhole.gerenteEventos.shared.dto.response.VerificationDTO;
 
 @Service
 public class VerificationService {
@@ -17,13 +17,13 @@ public class VerificationService {
     @Autowired
     private VerificationRepository verificationRepository;
 
-    public VerificationResponseDTO getVerification(String id) {
+    public VerificationDTO getVerification(String id) {
 
         VerificationEntity verification = verificationRepository
         .findById(id)
         .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
-       return VerificationResponseDTO.builder()
+       return VerificationDTO.builder()
         .id(verification.getId())
         .document(verification.getDocument())
         .approvedAt(verification.getApprovedAt())
@@ -32,7 +32,7 @@ public class VerificationService {
         .build();
         
     }
-    public VerificationResponseDTO update (String id, VerificationUpdateRequestDTO dto) {
+    public VerificationDTO update (String id, VerificationUpdateRequestDTO dto) {
         VerificationEntity verification = verificationRepository.findById(id)
         .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
@@ -48,7 +48,7 @@ public class VerificationService {
 
         VerificationEntity update = verificationRepository.save(verification);
 
-        return VerificationResponseDTO.builder()
+        return VerificationDTO.builder()
         .id(update.getId())
         .document(update.getDocument())
         .approvedId(update.getApproverId())

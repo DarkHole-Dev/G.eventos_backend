@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.darkhole.gerenteEventos.shared.database.service.VerificationService;
 import com.darkhole.gerenteEventos.shared.dto.request.VerificationUpdateRequestDTO;
-import com.darkhole.gerenteEventos.shared.dto.response.VerificationResponseDTO;
+import com.darkhole.gerenteEventos.shared.dto.response.VerificationDTO;
 
 @RestController
 @RequestMapping("/v1/verification")
@@ -21,16 +21,16 @@ public class VerificationController {
     private VerificationService verificationService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<VerificationResponseDTO> getVerification(@PathVariable("id") String id) {
-        VerificationResponseDTO response = verificationService.getVerification(id);
+    public ResponseEntity<VerificationDTO> getVerification(@PathVariable("id") String id) {
+        VerificationDTO response = verificationService.getVerification(id);
 
          return ResponseEntity.status(HttpStatus.OK).body(response);
 
 
     }
     @PutMapping("/{id}")
-    public ResponseEntity<VerificationResponseDTO> update (@PathVariable("id") String id, @RequestBody VerificationUpdateRequestDTO dto) {
-        VerificationResponseDTO response = verificationService.update(id, dto);
+    public ResponseEntity<VerificationDTO> update (@PathVariable("id") String id, @RequestBody VerificationUpdateRequestDTO dto) {
+        VerificationDTO response = verificationService.update(id, dto);
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

@@ -1,5 +1,7 @@
 package com.darkhole.gerenteEventos.shared.database.entity;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,5 +21,5 @@ public class PermissionEntity {
 
     private String name;
 
-    private String verificationId;
+    private List<String> verificationId;
 }

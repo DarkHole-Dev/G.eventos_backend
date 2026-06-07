@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class VerificationResponseDTO {
+public class VerificationDTO {
     
     private String id;
 
