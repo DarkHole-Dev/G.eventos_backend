@@ -1,12 +1,12 @@
 package com.darkhole.gerenteEventos.user.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import jakarta.persistence.Id;
 
 @Document(collection= "users")
 public class User {
     
+    // MongoDB usa org.springframework.data.annotation.Id; jakarta.persistence.Id causava erro sem JPA.
     @Id
     private Long id;
 
