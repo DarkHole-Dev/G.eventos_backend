@@ -7,9 +7,12 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.darkhole.gerenteEventos.event.dto.CreateEventDTO;
+import com.darkhole.gerenteEventos.event.dto.EventCCDTO;
 import com.darkhole.gerenteEventos.event.dto.EventDTO;
 import com.darkhole.gerenteEventos.event.dto.EventsDTO;
 import com.darkhole.gerenteEventos.shared.database.entity.EventEntity;
+import com.darkhole.gerenteEventos.shared.database.repository.CategoryRepository;
+import com.darkhole.gerenteEventos.shared.database.repository.CommentRepository;
 import com.darkhole.gerenteEventos.shared.database.repository.EventRepository;
 import com.darkhole.gerenteEventos.shared.database.repository.OrganizerRepository;
 import com.darkhole.gerenteEventos.shared.database.repository.PermissionRepository;
@@ -22,6 +25,10 @@ public class EventService {
     private final EventRepository eventRepository;
 
     private final OrganizerRepository organizerRepository;
+
+    private final CommentRepository commentRepository;
+    
+    private final CategoryRepository categoryRepository;
 
     private final PermissionRepository permissionRepository;
 
@@ -111,6 +118,20 @@ public class EventService {
 
         eventRepository.deleteById(id);
         return true;
+    }
+
+    public EventCCDTO getEventByCC(List<String> categoryIds, List<String> commentIds) {
+        return EventCCDTO.builder()
+            .categories(categoryRepository.findAllById(categoryIds))
+            .comments(commentRepository.findAllById(commentIds))
+            .build();
+    }
+
+    public List<EventDTO> getEventsByCategory(String categoryName) {
+        return eventRepository.findByCategoryName(categoryName)
+            .stream()
+            .map(this::toDTO)
+            .toList();
     }
 
     private EventDTO toDTO(EventEntity event) {

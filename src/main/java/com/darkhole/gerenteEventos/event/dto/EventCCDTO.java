@@ -1,4 +1,4 @@
-package com.darkhole.gerenteEventos.shared.dto.response;
+package com.darkhole.gerenteEventos.event.dto;
 
 import java.util.List;
 
@@ -7,12 +7,10 @@ import com.darkhole.gerenteEventos.shared.database.entity.CommentEntity;
 import com.darkhole.gerenteEventos.shared.dto.ResultDTO;
 
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = false)
+
 @Builder
-public class FindAllIdsDTO extends ResultDTO {
+public class EventCCDTO extends ResultDTO {
     public List<CategoryEntity> categories;
-
     public List<CommentEntity> comments;
 }

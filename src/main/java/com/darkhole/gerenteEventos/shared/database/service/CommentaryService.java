@@ -24,9 +24,6 @@ public class CommentaryService {
     private EventRepository eventRepository;
 
     public CommentEntity create(CommentaryRequestDTO dto) {
-
-        System.out.println("Total de eventos no banco: " + eventRepository.count());
-
         EventEntity event = eventRepository
         .findById(dto.getEventId())
         .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));

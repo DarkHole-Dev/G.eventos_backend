@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.darkhole.gerenteEventos.event.dto.CreateEventDTO;
+import com.darkhole.gerenteEventos.event.dto.EventCCIdDTO;
+import com.darkhole.gerenteEventos.event.dto.EventsDTO;
 import com.darkhole.gerenteEventos.shared.dto.DTO;
 import com.darkhole.gerenteEventos.shared.dto.ResultDTO;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -100,4 +104,28 @@ public class EventController {
             ? DTO.SUCCESS()
             : DTO.UNAUTHORIZED("Invalid token or event not owned by organizer");
     }
+
+
+    @GetMapping("/cc")
+    public ResponseEntity<ResultDTO> getMethodName(@RequestParam EventCCIdDTO ids) {
+        if (ids == null || ids.categoryIds == null || ids.commentIds == null) {
+            return DTO.BAD_REQUEST("At least one of categoryIds or commentIds is required");
+        }
+
+        return ResponseEntity.ok().body(
+            eventService.getEventByCC(ids.categoryIds, ids.commentIds)
+        );
+    }
+
+
+    @GetMapping("/searchByCategory")
+    public ResponseEntity<ResultDTO> getMethodName(@RequestParam String categoryName) {
+        if (categoryName == null || categoryName.isEmpty()) {
+            return DTO.BAD_REQUEST("Category name is required");
+        }
+
+        return ResponseEntity.ok().body(EventsDTO.builder().events(eventService.getEventsByCategory(categoryName)).build());
+    }
+    
+    
 }
