@@ -17,9 +17,13 @@ public class OrganizerEntity {
     @Id
     private String id;
 
+    private String imageUrl;
+
     private String name;
 
     private String cnpj;
+
+    private String password;
 
     private String contactId;
 
