@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: gerente-eventos
+  data:
+    mongodb:
+      auto-index-creation: false
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+      - org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
+
+logging:
+  level:
+    org.springframework.data.mongodb: WARN
+    org.mongodb.driver: WARN
+
+server:
+  port: 0
